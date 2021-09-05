@@ -51,5 +51,6 @@ tasks.jpackage.doFirst {
     copy {
         from('src/main/resources')
         into("$buildDir/jpackage/$basePath/app")
+        rename 'logback.template', 'logback.xml'
     }
 }
