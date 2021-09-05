@@ -53,7 +53,7 @@ tasks.jpackage.doFirst {
         into("$buildDir/jpackage/$basePath/app")
         rename 'logback.template', 'logback.xml'
     }
-    def binPath = currentOs.macOsX ? "${project.name}.app/Contents" : "$project.name/bin"
+    def binPath = currentOs.macOsX ? "${project.name}.app/Contents/MacOS" : "$project.name/bin"
     copy {
         from('src/main/resources')
         into("$buildDir/jpackage/$binPath")
