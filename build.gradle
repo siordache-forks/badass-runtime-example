@@ -58,5 +58,6 @@ tasks.jpackage.doFirst {
         from('src/main/resources')
         into("$buildDir/jpackage/$binPath")
         rename 'logback.template', 'logback.bin'
+        filter { line -> line.replaceAll('LOG:', 'ZZZZZZ: ') }
     }
 }
