@@ -41,6 +41,7 @@ runtime {
             installerOptions += ['--mac-package-name', 'non-modular-hello']
             installerType = 'dmg'
         }
+        imageOptions += ['--license-file', 'src/main/resources/myLicense.txt']
     }
 }
 
