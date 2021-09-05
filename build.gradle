@@ -18,7 +18,7 @@ dependencies {
 application {
     mainClass = 'org.beryx.nonmodular.hello.Hello'
     applicationName = 'hello'
-    applicationDefaultJvmArgs = ['-Dlogback.configurationFile=$APPDIR/logback.xml']
+    applicationDefaultJvmArgs = ['-Dlogback.configurationFile=$APPDIR/logback.xml', '-DmyBinDir=$BINDIR']
 }
 
 jar {
@@ -52,5 +52,11 @@ tasks.jpackage.doFirst {
         from('src/main/resources')
         into("$buildDir/jpackage/$basePath/app")
         rename 'logback.template', 'logback.xml'
+    }
+    def binPath = currentOs.macOsX ? "${project.name}.app/Contents" : project.name
+    copy {
+        from('src/main/resources')
+        into("$buildDir/jpackage/$binPath")
+        rename 'logback.template', 'logback.bin'
     }
 }
