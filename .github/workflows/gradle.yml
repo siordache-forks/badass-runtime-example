@@ -33,7 +33,7 @@ jobs:
       run: ls -al build/jpackage
     - name: Show logback files in DMG package
       if: runner.os == 'macOS'
-      run: hdiutil attach build/jpackage/*.dmg && find /Volumes/non-modular-hello/non-modular-hello.app/Contents -name "logback*"
+      run: hdiutil attach build/jpackage/*.dmg && find /Volumes/non-modular-hello/non-modular-hello.app/Contents -type f
     - name: Upload DMG as an artifact
       if: runner.os == 'macOS'
       uses: actions/upload-artifact@v2
@@ -54,7 +54,7 @@ jobs:
         path: build/jpackage/*.msi
     - name: Show logback files in DEB package
       if: runner.os == 'Linux'
-      run: dpkg -c build/jpackage/*.deb | grep logback
+      run: dpkg -c build/jpackage/*.deb
     - name: Upload DEB as an artifact
       if: runner.os == 'Linux'
       uses: actions/upload-artifact@v2
@@ -63,7 +63,7 @@ jobs:
         path: build/jpackage/*.deb
     - name: Show logback files in RPM package
       if: runner.os == 'Linux'
-      run: rpm -qlp build/jpackage/*.rpm | grep logback
+      run: rpm -qlp build/jpackage/*.rpm
     - name: Upload RPM as an artifact
       if: runner.os == 'Linux'
       uses: actions/upload-artifact@v2
