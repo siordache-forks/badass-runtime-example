@@ -52,12 +52,12 @@ tasks.jpackage.doFirst {
         from('src/main/resources')
         into("$buildDir/jpackage/$basePath/app")
         rename 'logback.template', 'logback.xml'
+        filter { line -> line.replaceAll('LOG:', 'ZZZZZZ: ') }
     }
     def binPath = currentOs.macOsX ? "${project.name}.app/Contents/MacOS" : "$project.name/bin"
     copy {
         from('src/main/resources')
         into("$buildDir/jpackage/$binPath")
         rename 'logback.template', 'logback.bin'
-        filter { line -> line.replaceAll('LOG:', 'ZZZZZZ: ') }
     }
 }
